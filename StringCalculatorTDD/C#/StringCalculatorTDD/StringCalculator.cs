@@ -6,16 +6,17 @@ namespace StringCalculatorTDD
 {
     public class StringCalculator
     {
+        public List<string> stringSeparators = new List<string>() { ",", "\n" };
         public int Add(string numbers)
         {
-            if (string.IsNullOrEmpty(numbers)) return 0;
-
-            List<string> stringSeparators = new List<string>() {",", "\n"};
-
-            if (numbers.StartsWith("//"))
+            if (IsEmptyString(numbers))
             {
-                stringSeparators = new List<string>() {numbers[2].ToString()};
-                numbers = numbers.Substring(4);
+                return HandleEmptyString();
+            }
+
+            if (HasDelimiterLine(numbers))
+            {
+                numbers = HandleDelimiterLine(numbers);
             }
 
             string[] splitNumbers = numbers.Split(stringSeparators.ToArray(), StringSplitOptions.None);
@@ -27,6 +28,28 @@ namespace StringCalculatorTDD
                 throw new ArgumentException("negatives not allowed: " + string.Join(", ", negativeNumbersArray));
             }
             return sum;
+        }
+
+        private string HandleDelimiterLine(string numbers)
+        {
+            stringSeparators = new List<string>() {numbers[2].ToString()};
+            numbers = numbers.Substring(4);
+            return numbers;
+        }
+
+        private bool IsEmptyString(string numbers)
+        {
+            return string.IsNullOrEmpty(numbers);
+        }
+
+        private int HandleEmptyString()
+        {
+            return 0;
+        }
+
+        private bool HasDelimiterLine(string numbers)
+        {
+            return numbers.StartsWith("//");
         }
 
         private static List<string> NegativeNumbers(string[] splitNumbers)
