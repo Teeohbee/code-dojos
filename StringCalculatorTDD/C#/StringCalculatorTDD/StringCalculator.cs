@@ -6,7 +6,7 @@ namespace StringCalculatorTDD
 {
     public class StringCalculator
     {
-        public List<string> stringSeparators = new List<string>() { ",", "\n" };
+        public List<string> StringSeparators = new List<string>() { ",", "\n" };
         public int Add(string numbers)
         {
             if (IsEmptyString(numbers))
@@ -19,20 +19,31 @@ namespace StringCalculatorTDD
                 numbers = HandleDelimiterLine(numbers);
             }
 
-            string[] splitNumbers = numbers.Split(stringSeparators.ToArray(), StringSplitOptions.None);
-            var sum = Sum(splitNumbers);
-            var negativeNumbers = NegativeNumbers(splitNumbers);
-            if (negativeNumbers.Any())
+            string[] splitNumbers = numbers.Split(StringSeparators.ToArray(), StringSplitOptions.None);
+
+            if (ContainsNegatives(numbers))
             {
-                string[] negativeNumbersArray = negativeNumbers.ToArray();
-                throw new ArgumentException("negatives not allowed: " + string.Join(", ", negativeNumbersArray));
+                HandleNegativeNumbers(splitNumbers);
             }
+
+            var sum = splitNumbers.Sum(int.Parse);
             return sum;
+        }
+
+        private void HandleNegativeNumbers(string[] splitNumbers)
+        {
+            string[] negativeNumbers = ReturnNegativeNumbers(splitNumbers);
+            throw new ArgumentException("negatives not allowed: " + string.Join(", ", negativeNumbers));
+        }
+
+        private bool ContainsNegatives(string numbers)
+        {
+            return numbers.Contains("-");
         }
 
         private string HandleDelimiterLine(string numbers)
         {
-            stringSeparators = new List<string>() {numbers[2].ToString()};
+            StringSeparators = new List<string>() {numbers[2].ToString()};
             numbers = numbers.Substring(4);
             return numbers;
         }
@@ -52,27 +63,9 @@ namespace StringCalculatorTDD
             return numbers.StartsWith("//");
         }
 
-        private static List<string> NegativeNumbers(string[] splitNumbers)
+        private static string[] ReturnNegativeNumbers(string[] splitNumbers)
         {
-            List<string> negativeNumbers = new List<string>();
-            foreach (string number in splitNumbers)
-            {
-                if (number[0].Equals('-'))
-                {
-                    negativeNumbers.Add(number);
-                }
-            }
-            return negativeNumbers;
-        }
-
-        private static int Sum(string[] splitNumbers)
-        {
-            int sum = 0;
-            foreach (string number in splitNumbers)
-            {
-                sum += int.Parse(number);
-            }
-            return sum;
+            return splitNumbers.Where(number => number[0].Equals('-')).ToArray();
         }
     }
 }
