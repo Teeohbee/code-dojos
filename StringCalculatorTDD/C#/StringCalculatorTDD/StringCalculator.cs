@@ -27,6 +27,12 @@ namespace StringCalculatorTDD
                 HandleNegativeNumbers(splitNumbers);
             }
 
+            var sum = CalculateSum(splitNumbers);
+            return sum;
+        }
+
+        private int CalculateSum(string[] splitNumbers)
+        {
             int sum = 0;
             foreach (string number in splitNumbers)
             {
