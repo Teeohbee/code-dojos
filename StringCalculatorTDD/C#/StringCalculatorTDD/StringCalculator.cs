@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace StringCalculatorTDD
@@ -26,7 +27,20 @@ namespace StringCalculatorTDD
                 HandleNegativeNumbers(splitNumbers);
             }
 
-            var sum = splitNumbers.Sum(int.Parse);
+            var sum = CalculateSum(splitNumbers);
+            return sum;
+        }
+
+        private int CalculateSum(string[] splitNumbers)
+        {
+            int sum = 0;
+            foreach (string number in splitNumbers)
+            {
+                if (IsLessThanOneThousand(number))
+                {
+                    sum += int.Parse(number);
+                }
+            }
             return sum;
         }
 
@@ -66,6 +80,11 @@ namespace StringCalculatorTDD
         private static string[] ReturnNegativeNumbers(string[] splitNumbers)
         {
             return splitNumbers.Where(number => number[0].Equals('-')).ToArray();
+        }
+
+        private bool IsLessThanOneThousand(string number)
+        {
+            return int.Parse(number) < 1000;
         }
     }
 }

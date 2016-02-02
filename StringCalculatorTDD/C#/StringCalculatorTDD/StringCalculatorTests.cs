@@ -58,5 +58,10 @@ namespace StringCalculatorTDD
         {
            Calculator.Add("1,-1,-4,6,7");
         }
+        [Test]
+        public void ShouldIgnoreNumbersBiggerThanOneThousand()
+        {
+            Assert.AreEqual(2, Calculator.Add("2,1001"));
+        }
     }
 }
