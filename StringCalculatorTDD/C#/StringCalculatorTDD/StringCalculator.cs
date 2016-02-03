@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace StringCalculatorTDD
 {
@@ -20,7 +22,7 @@ namespace StringCalculatorTDD
                 numbers = HandleDelimiterLine(numbers);
             }
 
-            string[] splitNumbers = numbers.Split(StringSeparators.ToArray(), StringSplitOptions.None);
+            string[] splitNumbers = numbers.Split(StringSeparators.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
             if (ContainsNegatives(numbers))
             {
@@ -57,11 +59,25 @@ namespace StringCalculatorTDD
 
         private string HandleDelimiterLine(string numbers)
         {
-            StringSeparators = new List<string>() {numbers[2].ToString()};
-            numbers = numbers.Substring(4);
+            string delimiterline = numbers.Split(new string[] { "\n" }, StringSplitOptions.None)[0];
+            if (delimiterline.Length <= 3)
+            {
+                StringSeparators.Add(numbers[2].ToString());
+                numbers = numbers.Substring(4);
+                return numbers;
+            }
+            var pattern = @"\[(.*?)\]";
+            var query = string.Concat(delimiterline);
+            var matches = Regex.Matches(query, pattern);
+
+            foreach (Match m in matches)
+            {
+                StringSeparators.Add(m.Groups[1].Value);
+            }
+            numbers = numbers.Substring(delimiterline.Length + 2);
             return numbers;
         }
-
+        
         private bool IsEmptyString(string numbers)
         {
             return string.IsNullOrEmpty(numbers);
