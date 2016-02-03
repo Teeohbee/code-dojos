@@ -22,7 +22,7 @@ namespace StringCalculatorTDD
                 numbers = HandleDelimiterLine(numbers);
             }
 
-            string[] splitNumbers = numbers.Split(StringSeparators.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] splitNumbers = numbers.Split(StringSeparators.ToArray(), StringSplitOptions.None);
 
             if (ContainsNegatives(numbers))
             {
@@ -74,7 +74,7 @@ namespace StringCalculatorTDD
             {
                 StringSeparators.Add(m.Groups[1].Value);
             }
-            numbers = numbers.Substring(delimiterline.Length + 2);
+            numbers = numbers.Substring(delimiterline.Length + 1);
             return numbers;
         }
         
