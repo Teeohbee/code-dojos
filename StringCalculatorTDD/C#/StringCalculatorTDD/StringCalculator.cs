@@ -9,7 +9,7 @@ namespace StringCalculatorTDD
 {
     public class StringCalculator
     {
-        public List<string> StringSeparators = new List<string>() { ",", "\n" };
+        private List<string> StringSeparators = new List<string>() { ",", "\n" };
         public int Add(string numbers)
         {
             if (IsEmptyString(numbers))
@@ -66,13 +66,10 @@ namespace StringCalculatorTDD
                 numbers = numbers.Substring(4);
                 return numbers;
             }
-            var pattern = @"\[(.*?)\]";
-            var query = string.Concat(delimiterline);
-            var matches = Regex.Matches(query, pattern);
-
-            foreach (Match m in matches)
+            var delimiters = Regex.Matches(delimiterline, @"\[(.*?)\]");
+            foreach (Match delimiter in delimiters)
             {
-                StringSeparators.Add(m.Groups[1].Value);
+                StringSeparators.Add(delimiter.Groups[1].Value);
             }
             numbers = numbers.Substring(delimiterline.Length + 1);
             return numbers;

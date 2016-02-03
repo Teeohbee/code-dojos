@@ -7,13 +7,11 @@ namespace StringCalculatorTDD
     class StringCalculatorTests
     {
         public StringCalculator Calculator;
-
         [SetUp]
         public void Init()
         {
             Calculator = new StringCalculator();
         }
-
         [Test]
         public void ShouldReturnZeroWhenGivenNoNumbers()
         {
