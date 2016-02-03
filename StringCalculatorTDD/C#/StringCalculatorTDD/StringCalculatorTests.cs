@@ -63,5 +63,10 @@ namespace StringCalculatorTDD
         {
             Assert.AreEqual(2, Calculator.Add("2,1001"));
         }
+        [Test]
+        public void ShouldSupportDelimitersOfVaryingLength()
+        {
+            Assert.AreEqual(6, Calculator.Add("//[***]\n1***2***3"));
+        }
     }
 }
