@@ -6,6 +6,17 @@ describe StringCalculatorTDD do
 
   describe "add" do
 
+    it "returns zero when given no numbers" do
+      expect(subject.add("")).to eq 0
+    end
+
+    it "returns zero when given no numbers" do
+      expect(subject.add("1")).to eq 1
+    end
+
+    it "returns zero when given no numbers" do
+      expect(subject.add("2")).to eq 2
+    end
   end
 
 end
