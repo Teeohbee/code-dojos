@@ -22,8 +22,12 @@ describe StringCalculatorTDD do
       expect(subject.add("1,2")).to eq 3
     end
 
-    it "returns 30 when given the string one and two" do
+    it "should handle strings with more than two numbers" do
       expect(subject.add("3,7,9,7,4")).to eq 30
+    end
+
+    it "should handle new lines as a delimiter" do
+      expect(subject.add("1\n2,3")).to eq 6
     end
 
   end

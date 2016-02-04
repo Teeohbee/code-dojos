@@ -1,15 +1,14 @@
 class StringCalculatorTDD
 
-  def add(numbers)
-    if is_empty?(numbers)
+  def add numbers
+    if is_empty? numbers
       handle_empty_string
-    else
-      split_numbers = numbers.split(",")
-      calculate_sum(split_numbers)
     end
+      split_numbers = numbers.split /[,\n]/
+      calculate_sum split_numbers
   end
 
-  def is_empty?(numbers)
+  def is_empty? numbers
     numbers == ""
   end
 
@@ -17,7 +16,7 @@ class StringCalculatorTDD
     0
   end
 
-  def calculate_sum(numbers)
+  def calculate_sum numbers
     sum = 0
     numbers.each do |number|
       sum += number.to_i
