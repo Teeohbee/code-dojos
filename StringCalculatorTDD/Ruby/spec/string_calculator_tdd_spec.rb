@@ -22,5 +22,9 @@ describe StringCalculatorTDD do
       expect(subject.add("1,2")).to eq 3
     end
 
+    it "returns 30 when given the string one and two" do
+      expect(subject.add("3,7,9,7,4")).to eq 30
+    end
+
   end
 end
