@@ -17,6 +17,10 @@ describe StringCalculatorTDD do
     it "returns 2 when given the string two" do
       expect(subject.add("2")).to eq 2
     end
-  end
 
+    it "returns 3 when given the string one and two" do
+      expect(subject.add("1,2")).to eq 3
+    end
+
+  end
 end
