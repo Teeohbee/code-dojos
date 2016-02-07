@@ -1,8 +1,10 @@
+require_relative "word_options"
+
 class FalloutGame
 attr_accessor :correct_answer
 attr_accessor :correct_letters
 
-def initialize()
+def initialize(word_options)
     @correct_answer = ""
     @correct_letters = 0
   end

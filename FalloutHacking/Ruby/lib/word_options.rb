@@ -9,7 +9,7 @@ class WordOptions
 
   def parse_words(file_path)
     File.open(file_path).each_line do |word|
-      @words << word
+      @words << word.delete("\n")
     end
   end
 
