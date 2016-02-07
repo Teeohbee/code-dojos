@@ -1,12 +1,21 @@
 class WordOptions
   attr_reader :words
+  attr_reader :game_word_list
 
   def initialize
     @words = []
+    @game_word_list = []
   end
 
   def parse_words(file_path)
-    @words = [1,2,3,4,5]
+    File.open(file_path).each_line do |word|
+      @words << word
+    end
+  end
+
+  def select_words(difficulty)
+    shuffled_words = @words.shuffle
+    @game_word_list = shuffled_words.first(difficulty)
   end
 
 end
