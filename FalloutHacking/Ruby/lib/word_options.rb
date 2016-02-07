@@ -18,4 +18,8 @@ class WordOptions
     @game_word_list = shuffled_words.first(difficulty)
   end
 
+  def select_winning_word
+    @game_word_list.sample
+  end
+
 end

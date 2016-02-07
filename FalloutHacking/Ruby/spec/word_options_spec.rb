@@ -24,8 +24,14 @@ describe WordOptions do
       subject.select_words(10)
       expect(subject.game_word_list.count).to eql 10
     end
+  end
 
-
+  describe "select winning word" do
+    it 'selects the winning word from the game word list' do
+      subject.parse_words("lib/wordlist.txt")
+      subject.select_words(10)
+      expect(subject.game_word_list.include?(subject.select_winning_word)).to eql true
+    end
   end
 
 end
