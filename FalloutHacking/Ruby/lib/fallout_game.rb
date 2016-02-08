@@ -3,8 +3,10 @@ require_relative "word_options"
 class FalloutGame
 attr_accessor :correct_answer
 attr_accessor :correct_letters
+attr_reader :game_word_list
 
 def initialize(word_options)
+    @game_word_list = word_options.game_word_list
     @correct_answer = word_options.select_winning_word
     @correct_letters = 0
   end

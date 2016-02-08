@@ -2,13 +2,13 @@ require 'fallout_game'
 
 describe FalloutGame do
 
-  describe "guess" do
+  before(:each) do
+    word_options = double("word_options", game_word_list: ["atomic","broken","throne","hacked","locked","attach","builds","lumber","change","weapon"] )
+    allow(word_options).to receive(:select_winning_word).and_return("atomic")
+    @game = FalloutGame.new(word_options)
+  end
 
-    before(:each) do
-      word_options = double("word options", game_word_list: ["atomic","broken","throne","hacked","locked","attach","builds","lumber","change","weapon"] )
-      allow(word_options).to receive(:select_winning_word).and_return("atomic")
-      @game = FalloutGame.new(word_options)
-    end
+  describe "guess" do
 
     xit { is_expected.to respond_to(:guess).with(1).arguments }
 
@@ -24,9 +24,17 @@ describe FalloutGame do
 
     it 'should calculate correct letters when incorrect answer is given' do
       @game.correct_answer = "atomic"
-      @game.guess "atoned"
-      expect(@game.correct_letters).to eq 3
+      @game.guess "attach"
+      expect(@game.correct_letters).to eq 2
     end
+  end
+
+  describe "display" do
+
+    it 'should display the list of game words' do
+      expect(@game.game_word_list).to eql ["atomic","broken","throne","hacked","locked","attach","builds","lumber","change","weapon"]
+    end
+
   end
 
 end
