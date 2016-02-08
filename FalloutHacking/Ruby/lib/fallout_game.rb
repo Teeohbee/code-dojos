@@ -5,7 +5,7 @@ attr_accessor :correct_answer
 attr_accessor :correct_letters
 
 def initialize(word_options)
-    @correct_answer = ""
+    @correct_answer = word_options.select_winning_word
     @correct_letters = 0
   end
 
