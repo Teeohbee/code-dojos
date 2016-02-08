@@ -2,7 +2,7 @@ class WordOptions
   attr_reader :words
   attr_reader :game_word_list
 
-  def initialize
+  def initialize(difficulty_options)
     @words = []
     @game_word_list = []
   end
