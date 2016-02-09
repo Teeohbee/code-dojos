@@ -1,4 +1,5 @@
 require_relative "word_options"
+require_relative "difficulty_options"
 
 class FalloutGame
 attr_accessor :correct_answer
