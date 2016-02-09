@@ -9,9 +9,6 @@ describe FalloutGame do
   end
 
   describe "guess" do
-
-    xit { is_expected.to respond_to(:guess).with(1).arguments }
-
     it 'should return true when correct answer is given' do
       @game.correct_answer = "atomic"
       expect(@game.guess("atomic")).to eq true
@@ -30,7 +27,6 @@ describe FalloutGame do
   end
 
   describe "display" do
-
     it 'should display the list of game words' do
       expect(@game.game_word_list).to eql ["atomic","broken","throne","hacked","locked","attach","builds","lumber","change","weapon"]
     end

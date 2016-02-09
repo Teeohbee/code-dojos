@@ -9,7 +9,7 @@ def initialize(word_options)
     @game_word_list = word_options.game_word_list
     @correct_answer = word_options.select_winning_word
     @correct_letters = 0
-  end
+end
 
 def guess(answer)
   if answer == correct_answer
