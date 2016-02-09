@@ -3,7 +3,7 @@ require 'word_options'
 describe WordOptions do
 
   before(:each) do
-    difficulty_options = double("difficulty_options", word_list_length:[9,10,11,12].sample)
+    difficulty_options = double("difficulty_options", word_list_length:[9,10,11,12].sample, word_length: 6)
     @word_options = WordOptions.new(difficulty_options)
   end
 

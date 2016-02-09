@@ -15,7 +15,10 @@ class WordOptions
   end
 
   def select_words()
-    shuffled_words = @words.shuffle
+    correct_length_words = @words.select do |word|
+      word.length == @difficulty_options.word_length
+    end
+    shuffled_words = correct_length_words.shuffle
     @game_word_list = shuffled_words.first(@difficulty_options.word_list_length)
   end
 
