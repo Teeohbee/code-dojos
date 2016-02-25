@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace GameOfThrees
 {
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+    }
     public class GameOfThrees
     {
         public int Play(int inputNumber)
