@@ -6,26 +6,31 @@ using System.Threading.Tasks;
 
 namespace GameOfThrees
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-        }
-    }
     public class GameOfThrees
     {
-        public int Play(int inputNumber)
+        public string Play(int inputNumber)
         {
+            StringBuilder MathSteps = new StringBuilder();
             if (inputNumber == 0)
             {
-                return 0;
+                return inputNumber.ToString();
             }
 
             if (inputNumber == 3)
             {
-                return 1;
+                MathSteps.Append((inputNumber / 3).ToString());
+                return MathSteps.ToString();
             }
-            return inputNumber;
+
+            int inputNumberDivided = inputNumber/3;
+            MathSteps.Append(inputNumberDivided);
+            if (inputNumberDivided == 3)
+            {
+                MathSteps.Append(",");
+                MathSteps.Append((inputNumberDivided / 3).ToString());
+                return MathSteps.ToString();
+            }
+            return inputNumber.ToString();
         }
     }
 }
