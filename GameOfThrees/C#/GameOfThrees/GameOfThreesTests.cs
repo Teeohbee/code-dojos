@@ -15,7 +15,6 @@ namespace GameOfThrees
         public void Init()
         {
             Game = new GameOfThrees();
-
         }
         [Test]
         public void ShouldReturnZeroWhenGivenZero()
@@ -26,6 +25,11 @@ namespace GameOfThrees
         public void ShouldReturnOneWhenGivenThree()
         {
             Assert.AreEqual(1, Game.Play(3));
+        }
+        [Test]
+        public void ShouldNotReturnOneWhenGivenNine()
+        {
+            Assert.AreNotEqual(1, Game.Play(9));
         }
     }
 }

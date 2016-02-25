@@ -10,7 +10,16 @@ namespace GameOfThrees
     {
         public int Play(int inputNumber)
         {
-            return 1;
+            if (inputNumber == 0)
+            {
+                return 0;
+            }
+
+            if (inputNumber == 3)
+            {
+                return 1;
+            }
+            return inputNumber;
         }
     }
 }
