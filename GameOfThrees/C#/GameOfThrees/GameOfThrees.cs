@@ -8,9 +8,10 @@ namespace GameOfThrees
 {
     public class GameOfThrees
     {
+        StringBuilder MathSteps = new StringBuilder();
+
         public string Play(int inputNumber)
         {
-            StringBuilder MathSteps = new StringBuilder();
             if (inputNumber == 0)
             {
                 return inputNumber.ToString();
@@ -24,13 +25,9 @@ namespace GameOfThrees
 
             int inputNumberDivided = inputNumber/3;
             MathSteps.Append(inputNumberDivided);
-            if (inputNumberDivided == 3)
-            {
-                MathSteps.Append(",");
-                MathSteps.Append((inputNumberDivided / 3).ToString());
-                return MathSteps.ToString();
-            }
-            return inputNumber.ToString();
+            MathSteps.Append(",");
+            Play(inputNumberDivided);
+            return MathSteps.ToString();
         }
     }
 }
