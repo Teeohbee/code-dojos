@@ -29,25 +29,33 @@ namespace GameOfThrees
                 return MathSteps;
             }
 
-            if (inputNumber%3 == 0)
+            if (IsDivisableByThree(inputNumber))
             {
-                int inputNumberDivided = inputNumber / 3;
-                MathSteps.Add(inputNumberDivided);
-                Play(inputNumberDivided);
+                HandleDivision(inputNumber);
             }
             if ((inputNumber+1) % 3 == 0)
             {
-                int inputNumberDivided = (inputNumber+1) / 3;
-                MathSteps.Add(inputNumberDivided);
-                Play(inputNumberDivided);
+                HandleDivision(inputNumber+1);
+
             }
             if ((inputNumber-1) % 3 == 0)
             {
-                int inputNumberDivided = (inputNumber-1) / 3;
-                MathSteps.Add(inputNumberDivided);
-                Play(inputNumberDivided);
+                HandleDivision(inputNumber-1);
+
             }
             return MathSteps;
+        }
+
+        private void HandleDivision(int inputNumber)
+        {
+            int inputNumberDivided = inputNumber/3;
+            MathSteps.Add(inputNumberDivided);
+            Play(inputNumberDivided);
+        }
+
+        private static bool IsDivisableByThree(int inputNumber)
+        {
+            return inputNumber%3 == 0;
         }
     }
 }
