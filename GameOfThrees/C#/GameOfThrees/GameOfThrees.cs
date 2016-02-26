@@ -12,21 +12,16 @@ namespace GameOfThrees
 
         public List<int> Play(int inputNumber)
         {
-            if (inputNumber == 0)
+            switch (inputNumber)
             {
-                MathSteps.Add(inputNumber);
-                return MathSteps;
-            }
-
-            if (inputNumber == 1)
-            {
-                return MathSteps;
-            }
-
-            if (inputNumber == 3)
-            {
-                MathSteps.Add((inputNumber / 3));
-                return MathSteps;
+                case 0:
+                    MathSteps.Add(inputNumber);
+                    return MathSteps;
+                case 1:
+                    return MathSteps;
+                case 3:
+                    MathSteps.Add((inputNumber / 3));
+                    return MathSteps;
             }
 
             if (IsDivisableByThree(inputNumber))
@@ -36,12 +31,10 @@ namespace GameOfThrees
             if ((inputNumber+1) % 3 == 0)
             {
                 HandleDivision(inputNumber+1);
-
             }
             if ((inputNumber-1) % 3 == 0)
             {
                 HandleDivision(inputNumber-1);
-
             }
             return MathSteps;
         }
