@@ -8,26 +8,49 @@ namespace GameOfThrees
 {
     public class GameOfThrees
     {
-        StringBuilder MathSteps = new StringBuilder();
+        List<int> MathSteps = new List<int>();
 
-        public string Play(int inputNumber)
+        public List<int> Play(int inputNumber)
         {
             if (inputNumber == 0)
             {
-                return inputNumber.ToString();
+                MathSteps.Add(inputNumber);
+                return MathSteps;
+            }
+
+            if (inputNumber == 1)
+            {
+                MathSteps.Add(inputNumber);
+                return MathSteps;
             }
 
             if (inputNumber == 3)
             {
-                MathSteps.Append((inputNumber / 3).ToString());
-                return MathSteps.ToString();
+                MathSteps.Add((inputNumber / 3));
+                return MathSteps;
             }
 
-            int inputNumberDivided = inputNumber/3;
-            MathSteps.Append(inputNumberDivided);
-            MathSteps.Append(",");
-            Play(inputNumberDivided);
-            return MathSteps.ToString();
+            if (inputNumber%3 == 0)
+            {
+                int inputNumberDivided = inputNumber / 3;
+                MathSteps.Add(inputNumberDivided);
+                Play(inputNumberDivided);
+            }
+            if ((inputNumber+1) % 3 == 0)
+            {
+                MathSteps.Add(1);
+                int inputNumberDivided = (inputNumber+1) / 3;
+                MathSteps.Add(inputNumberDivided);
+                Play(inputNumberDivided);
+            }
+            if ((inputNumber-1) % 3 == 0)
+            {
+                MathSteps.Add(-1);
+                int inputNumberDivided = (inputNumber-1) / 3;
+                MathSteps.Add(inputNumberDivided);
+                Play(inputNumberDivided);
+            }
+            return MathSteps;
         }
     }
 }

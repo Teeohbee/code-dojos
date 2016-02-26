@@ -19,22 +19,32 @@ namespace GameOfThrees
         [Test]
         public void ShouldReturnZeroWhenGivenZero()
         {
-            Assert.AreEqual("0", Game.Play(0));
+            Assert.AreEqual(new List<int> { 0 }, Game.Play(0));
         }
         [Test]
         public void ShouldReturnOneWhenGivenThree()
         {
-            Assert.AreEqual("1", Game.Play(3));
+            Assert.AreEqual(new List<int> { 1 }, Game.Play(3));
         }
         [Test]
         public void ShouldNotReturnOneWhenGivenNine()
         {
-            Assert.AreNotEqual("1", Game.Play(9));
+            Assert.AreNotEqual(new List<int> { 1 }, Game.Play(9));
         }
         [Test]
         public void ShouldReturnThreeOneWhenGivenNine()
         {
-            Assert.AreEqual("3,1", Game.Play(9));
+            Assert.AreEqual(new List<int> { 3, 1 }, Game.Play(9));
+        }
+        [Test]
+        public void ShouldReturnTwoOneWhenGivenSix()
+        {
+            Assert.AreEqual(new List<int> { 2, 1 }, Game.Play(6));
+        }
+        [Test]
+        public void ShouldReturnTwoOneWhenGivenTwentySix()
+        {
+            Assert.AreEqual("2,+1,1", Game.Play(26));
         }
     }
 }
