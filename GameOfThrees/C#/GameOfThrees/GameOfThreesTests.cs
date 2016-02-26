@@ -44,7 +44,7 @@ namespace GameOfThrees
         [Test]
         public void ShouldReturnTwoOneWhenGivenTwentySix()
         {
-            Assert.AreEqual("2,+1,1", Game.Play(26));
+            Assert.AreEqual(new List<int> { 9, 3, 1 }, Game.Play(26));
         }
     }
 }
