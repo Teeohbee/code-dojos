@@ -1,4 +1,4 @@
-##Game Of Threes
+#Game Of Threes
 
 ###Background
 
