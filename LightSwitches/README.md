@@ -1,4 +1,4 @@
-#Light Swithces
+#Light Switches
 
 ###Problem description
 
