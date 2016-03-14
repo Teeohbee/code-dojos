@@ -10,8 +10,6 @@ describe FalloutGame do
 
   describe "guess" do
 
-    xit { is_expected.to respond_to(:guess).with(1).arguments }
-
     it 'should return true when correct answer is given' do
       @game.correct_answer = "atomic"
       expect(@game.guess("atomic")).to eq true

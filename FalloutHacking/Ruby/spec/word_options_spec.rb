@@ -8,7 +8,6 @@ describe WordOptions do
   end
 
   describe "parse words" do
-    xit { is_expected.to respond_to(:parse_words).with(1).arguments }
 
     it 'parses a text file into an array' do
       @word_options.parse_words("lib/wordlist.txt")
