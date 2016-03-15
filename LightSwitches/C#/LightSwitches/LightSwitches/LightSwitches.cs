@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace LightSwitches
@@ -45,6 +43,19 @@ namespace LightSwitches
         {
             int sum = LightStatus.Sum();
             return sum;
+        }
+
+        public int LoadFromInput(string inputTextFilePath)
+        {
+            string[] lines = File.ReadAllLines(inputTextFilePath);
+            NoOfLights = Int32.Parse(lines[0]);
+            GenerateStatusArray();
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string input = lines[i];
+                TurnOnLights(input);
+            }
+            return CalulateNoLightsOn();
         }
     }
 
@@ -105,9 +116,11 @@ namespace LightSwitches
         {
             LightSwitchGame.NoOfLights = 10;
             LightSwitchGame.GenerateStatusArray();
-            LightSwitchGame.TurnOnLights("0 5");
-            LightSwitchGame.TurnOnLights("3 7");
-            var list = new List<int> { 1, 1, 1, 0, 0, 0, 1, 1, 0, 0 };
+            LightSwitchGame.TurnOnLights("3 6");
+            LightSwitchGame.TurnOnLights("0 4");
+            LightSwitchGame.TurnOnLights("7 3");
+            LightSwitchGame.TurnOnLights("9 9");
+            var list = new List<int> { 1, 1, 1, 1, 1, 0, 0, 1, 0, 1 };
             Assert.AreEqual(list, LightSwitchGame.LightStatus);
         }
         [Test]
@@ -120,6 +133,12 @@ namespace LightSwitches
             LightSwitchGame.TurnOnLights("7 3");
             LightSwitchGame.TurnOnLights("9 9");
             Assert.AreEqual(7, LightSwitchGame.CalulateNoLightsOn());
+        }
+        [Test]
+        public void ShouldCalculateNumberOfLightsFromInput()
+        {
+            LightSwitchGame.LoadFromInput($@"{AppDomain.CurrentDomain.BaseDirectory}\ChallengeInput.txt");
+            Assert.AreEqual(423, LightSwitchGame.CalulateNoLightsOn());
         }
     }
 }
