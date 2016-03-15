@@ -115,9 +115,11 @@ namespace LightSwitches
         {
             LightSwitchGame.NoOfLights = 10;
             LightSwitchGame.GenerateStatusArray();
-            LightSwitchGame.TurnOnLights("0 5");
-            LightSwitchGame.TurnOnLights("3 7");
-            Assert.AreEqual(5, LightSwitchGame.CalulateNoLightsOn());
+            LightSwitchGame.TurnOnLights("3 6");
+            LightSwitchGame.TurnOnLights("0 4");
+            LightSwitchGame.TurnOnLights("7 3");
+            LightSwitchGame.TurnOnLights("9 9");
+            Assert.AreEqual(7, LightSwitchGame.CalulateNoLightsOn());
         }
     }
 }
