@@ -27,14 +27,7 @@ namespace LightSwitches
             var lightRange = ParseInputToRange(input);
             foreach (int index in lightRange)
             {
-                if (LightStatus[index] == 0)
-                {
-                    LightStatus[index] = 1;
-                }
-                else if (LightStatus[index] == 1)
-                {
-                    LightStatus[index] = 0;
-                }
+                LightStatus[index] = (LightStatus[index] == 0) ? 1 : 0;
             }
         }
 
@@ -46,6 +39,12 @@ namespace LightSwitches
             int count = endingLight - startingLight + 1;
             IEnumerable<int> lightRange = Enumerable.Range(startingLight, count);
             return lightRange;
+        }
+
+        public int CalulateNoLightsOn()
+        {
+            int sum = LightStatus.Sum();
+            return sum;
         }
     }
 
@@ -110,6 +109,15 @@ namespace LightSwitches
             LightSwitchGame.TurnOnLights("3 7");
             var list = new List<int> { 1, 1, 1, 0, 0, 0, 1, 1, 0, 0 };
             Assert.AreEqual(list, LightSwitchGame.LightStatus);
+        }
+        [Test]
+        public void ShouldCalculateNumberOfLightsStillOn()
+        {
+            LightSwitchGame.NoOfLights = 10;
+            LightSwitchGame.GenerateStatusArray();
+            LightSwitchGame.TurnOnLights("0 5");
+            LightSwitchGame.TurnOnLights("3 7");
+            Assert.AreEqual(5, LightSwitchGame.CalulateNoLightsOn());
         }
     }
 }
