@@ -70,8 +70,20 @@ namespace LightSwitches
             var list = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             Assert.AreEqual(list, LightSwitchGame.LightStatus);
         }
-        [TestCase("0 0",1,0,0,0,0,0,0,0,0,0)]
-        public void ShouldTurnOnFirstLightWhenGivenZeroZero(string input, params int[] expectedLightStatus)
+        [TestCase("0 0", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+        [TestCase("1 4", 0, 1, 1, 1, 1, 0, 0, 0, 0, 0)]
+        [TestCase("0 9", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)]
+        [TestCase("5 6", 0, 0, 0, 0, 0, 1, 1, 0, 0, 0)]
+        [TestCase("4 8", 0, 0, 0, 0, 1, 1, 1, 1, 1, 0)]
+        public void ShouldTurnOnLightsWhenGivenIncreasingRange(string input, params int[] expectedLightStatus)
+        {
+            LightSwitchGame.NoOfLights = 10;
+            LightSwitchGame.GenerateStatusArray();
+            LightSwitchGame.TurnOnLights(input);
+            Assert.AreEqual(expectedLightStatus, LightSwitchGame.LightStatus);
+        }
+        [TestCase("7 3", 0, 0, 0, 1, 1, 1, 1, 1, 0, 0)]
+        public void ShouldTurnOnLightsWhenGivenDecreasingRange(string input, params int[] expectedLightStatus)
         {
             LightSwitchGame.NoOfLights = 10;
             LightSwitchGame.GenerateStatusArray();
