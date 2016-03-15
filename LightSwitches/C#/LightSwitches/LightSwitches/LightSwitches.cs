@@ -24,10 +24,7 @@ namespace LightSwitches
 
         public void TurnOnLights(string input)
         {
-            List<int> lights = input.Split(' ').Select(Int32.Parse).ToList();
-            int startingLight = lights[0];
-            int count = lights[1] - lights[0] + 1;
-            IEnumerable<int> lightRange = Enumerable.Range(startingLight, count);
+            var lightRange = ParseInputToRange(input);
             foreach (int index in lightRange)
             {
                 if (LightStatus[index] == 0)
@@ -39,6 +36,16 @@ namespace LightSwitches
                     LightStatus[index] = 0;
                 }
             }
+        }
+
+        private static IEnumerable<int> ParseInputToRange(string input)
+        {
+            List<int> lights = input.Split(' ').Select(Int32.Parse).ToList();
+            int startingLight = Math.Min(lights[0], lights[1]);
+            int endingLight = Math.Max(lights[0], lights[1]);
+            int count = endingLight - startingLight + 1;
+            IEnumerable<int> lightRange = Enumerable.Range(startingLight, count);
+            return lightRange;
         }
     }
 
@@ -83,6 +90,10 @@ namespace LightSwitches
             Assert.AreEqual(expectedLightStatus, LightSwitchGame.LightStatus);
         }
         [TestCase("7 3", 0, 0, 0, 1, 1, 1, 1, 1, 0, 0)]
+        [TestCase("4 1", 0, 1, 1, 1, 1, 0, 0, 0, 0, 0)]
+        [TestCase("9 0", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)]
+        [TestCase("6 5", 0, 0, 0, 0, 0, 1, 1, 0, 0, 0)]
+        [TestCase("8 4", 0, 0, 0, 0, 1, 1, 1, 1, 1, 0)]
         public void ShouldTurnOnLightsWhenGivenDecreasingRange(string input, params int[] expectedLightStatus)
         {
             LightSwitchGame.NoOfLights = 10;
