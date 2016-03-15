@@ -101,5 +101,15 @@ namespace LightSwitches
             LightSwitchGame.TurnOnLights(input);
             Assert.AreEqual(expectedLightStatus, LightSwitchGame.LightStatus);
         }
+        [Test]
+        public void ShouldHandleMultipleInputs()
+        {
+            LightSwitchGame.NoOfLights = 10;
+            LightSwitchGame.GenerateStatusArray();
+            LightSwitchGame.TurnOnLights("0 5");
+            LightSwitchGame.TurnOnLights("3 7");
+            var list = new List<int> { 1, 1, 1, 0, 0, 0, 1, 1, 0, 0 };
+            Assert.AreEqual(list, LightSwitchGame.LightStatus);
+        }
     }
 }
