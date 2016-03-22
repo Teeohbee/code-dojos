@@ -1,11 +1,7 @@
-# SimFrost (#117)
+# SimFrost (\#117)
 This was one of the Perl Quiz of the Week problems a couple of years ago. It's also my favorite computer simulation.
 
-The goal is to create a simulation of frost. The end result should look something like this (13MB Quicktime Movie):
-
-Simulation Example
-
-Of course, you don't have to create a movie. Using the terminal is just fine.
+The goal is to create a simulation of frost.
 
 Here are the rules of the simulation.
 
