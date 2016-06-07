@@ -1,5 +1,5 @@
 class Tower
-attr_reader :name
+  attr_reader :name
 
   def initialize(name, discs)
     @name = name
@@ -20,9 +20,6 @@ attr_reader :name
   end
 
   def push(disc)
-    if can_push?(disc)
-      @discs.push(disc)
-    end
+    @discs.push(disc) if can_push?(disc)
   end
-
 end
